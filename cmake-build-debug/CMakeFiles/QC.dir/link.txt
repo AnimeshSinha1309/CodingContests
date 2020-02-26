@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/QC.dir/Codeforces/609/C.cpp.o  -o QC 

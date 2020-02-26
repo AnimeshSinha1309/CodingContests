@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/A2OJ1900.dir/A2OJ1900/65-128B.cpp.o  -o A2OJ1900 

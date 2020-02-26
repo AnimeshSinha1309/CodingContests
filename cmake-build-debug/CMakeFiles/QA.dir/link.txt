@@ -1,0 +1,1 @@
+/usr/bin/c++  -g   CMakeFiles/QA.dir/Codeforces/609/A.cpp.o  -o QA 
