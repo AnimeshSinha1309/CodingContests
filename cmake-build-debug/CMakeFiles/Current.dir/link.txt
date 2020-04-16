@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/Current.dir/Codechef/LAZZYSEG.cpp.o  -o Current 

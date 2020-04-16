@@ -1,1 +1,0 @@
-/usr/bin/c++  -g   CMakeFiles/QB.dir/Codeforces/609/B.cpp.o  -o QB 

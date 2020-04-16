@@ -4,5 +4,4 @@ set(CMAKE_CXX_STANDARD 14)            # Enable c++14 standard
 
 # Add executable target with source files listed in SOURCE_FILES variable
 
-add_executable(A2OJ1900 A2OJ1900/65-128B.cpp)
-add_executable(Current Codechef/LAZZYSEG.cpp)
+add_executable(QA CodeForces/R635/D.cpp)

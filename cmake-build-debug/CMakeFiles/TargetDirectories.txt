@@ -1,4 +1,0 @@
-/home/animesh/Code/Contest/cmake-build-debug/CMakeFiles/rebuild_cache.dir
-/home/animesh/Code/Contest/cmake-build-debug/CMakeFiles/edit_cache.dir
-/home/animesh/Code/Contest/cmake-build-debug/CMakeFiles/A2OJ1900.dir
-/home/animesh/Code/Contest/cmake-build-debug/CMakeFiles/Current.dir
