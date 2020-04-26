@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.13)  # CMake version check
-project(simple_example)               # Create project "simple_example"
-set(CMAKE_CXX_STANDARD 14)            # Enable c++14 standard
+project(CompetitiveProgramming)
+set(CMAKE_CXX_STANDARD 17)            # Enable c++14 standard
 
-# Add executable target with source files listed in SOURCE_FILES variable
+add_compile_options(-Wall -pedantic -fsanitize=undefined)
 
-add_executable(QA CodeForces/R635/D.cpp)
+add_executable(Coding CodeForces/R637/E.cpp)

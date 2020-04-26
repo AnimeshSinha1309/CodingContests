@@ -30,27 +30,40 @@ ostream &operator<<(ostream &out, vector<Type> &vec) {
     return out;
 }
 
+ll n, m, g, r;
+mll cache;
+vll a;
+
+ll dp(ll pos, ll time) {
+    // Handle invalid or solved problems
+    if (cache[pos][time])
+        return cache[pos][time];
+    // Go to higher position
+    if (pos < a.size() - 1) {
+        ll dist_1 = a[pos + 1] - a[pos];
+        if (time == dist_1)
+            minimize(cache[pos][time], dp(pos + 1, g) + dist_1 + r);
+        else if (time > dist_1)
+            minimize(cache[pos][time], dp(pos + 1, time - dist_1) + dist_1);
+    }
+    // Go to lower position
+    if (pos > 0) {
+        ll dist_2 = a[pos] - a[pos - 1];
+        if (time == dist_2)
+            dp(pos - 1, g, dist + dist_2 + r);
+        else if (time > dist_2)
+            dp(pos - 1, time - dist_2, dist + dist_2);
+    }
+}
+
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
     cout.tie(nullptr);
-    ll n, m, k, a, b;
-    cin >> n >> m >> k;
-    for (int i = 0; i < k; i++)
-        cin >> a >> b;
-    for (int i = 0; i < k; i++)
-        cin >> a >> b;
-    // Outputs
-    cout << (n - 1) + (m - 1) + (n - 1) * m + (m - 1) << endl;
-    for (int i = 1; i < m; i++)
-        cout << "L";
-    for (int i = 1; i < n; i++)
-        cout << "U";
-    for (int i = 0; i < m; i++) {
-        for (int j = 1; j < n; j++)
-            cout << (i % 2 == 0 ? "D" : "U");
-        if (i != m - 1)
-            cout << "R";
-    }
-    cout << endl;
+    cin >> n >> m;
+    a = vll(m);
+    cin >> a;
+    cin >> g >> r;
+    cache = mll(m + 1, vll(g + 1, INT64_MAX));
+    dp()
 }

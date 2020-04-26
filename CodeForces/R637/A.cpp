@@ -34,21 +34,15 @@ int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
     cout.tie(nullptr);
-    int t;
+    ll t;
     cin >> t;
     while (t--) {
-        ll n;
-        cin >> n;
-        vll a(n), b(n);
-        for (int i = 0; i < n; i++) {
-            cin >> a[i] >> b[i];
-        }
-        vll c(n);
-        ll ans = 0;
-        for (int i = 0; i < n; i++) {
-            ans += max(a[i] - b[(i - 1 + n) % n], 0ll);
-            c[i] = min(a[i], b[(i - 1 + n) % n]);
-        }
-        cout << ans + *min_element(c.begin(), c.end()) << endl;
+        ll n, a, b, c, d;
+        cin >> n >> a >> b >> c >> d;
+        ll lower = n * (a - b), upper = n * (a + b);
+        if (lower > c + d || upper < c - d)
+            cout << "No" << endl;
+        else
+            cout << "Yes" << endl;
     }
 }

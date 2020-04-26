@@ -34,36 +34,22 @@ int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
     cout.tie(nullptr);
-    ll t;
+    int t;
     cin >> t;
     while (t--) {
-        ll n, l, r;
-        cin >> n >> l >> r;
-        l--, r--;
-        ll visitor = 1;
-        while (l - 2 * (n - visitor) > 0) {
-            l -= 2 * (n - visitor);
-            r -= 2 * (n - visitor);
-            visitor++;
-        }
-        // cout << l << "," << r << "," << visiting << endl;
-        while (r >= 0) {
-            if (n == visitor) {
-                cout << "1 ";
+        ll n;
+        cin >> n;
+        vll a(n);
+        cin >> a;
+        bool ans = true;
+        ll top = a[n - 1];
+        for (int i = n - 1; i > 0; i--) {
+            maximize(top, a[i]);
+            if (!(a[i] - 1 == a[i - 1] || a[i - 1] > top)) {
+                ans = false;
                 break;
             }
-            for (int i = 0; i < 2 * (n - visitor) && i <= r; i++) {
-                if (i >= l && i <= r) {
-                    if (i % 2 == 1)
-                        cout << (i / 2 + 1 + visitor) << " ";
-                    else
-                        cout << (visitor) << " ";
-                }
-            }
-            l -= 2 * (n - visitor);
-            r -= 2 * (n - visitor);
-            visitor++;
         }
-        cout << endl;
+        cout << (ans ? "Yes" : "No") << endl;
     }
 }

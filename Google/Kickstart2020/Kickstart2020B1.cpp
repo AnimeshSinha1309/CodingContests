@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+
 using namespace std;
 
 typedef long long ll;
@@ -15,14 +16,15 @@ typedef vector<vector<bool>> mbl;
 #define maximize(a, b) (a = max(a, b))
 const long long MOD = 1e9 + 7;
 
-template <typename Type>
+template<typename Type>
 istream &operator>>(istream &in, vector<Type> &vec) {
-   ll n = vec.size();
-   for (int i = 0; i < n; i++)
-       in >> vec[i];
-   return in;
+    ll n = vec.size();
+    for (int i = 0; i < n; i++)
+        in >> vec[i];
+    return in;
 }
-template <typename Type>
+
+template<typename Type>
 ostream &operator<<(ostream &out, vector<Type> &vec) {
     for (auto val : vec)
         out << val << " ";
@@ -34,10 +36,15 @@ int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
     cout.tie(nullptr);
-    ll t;
-    cin >> t;
-    while(t--){
-        ll a, b, c, d; cin >> a >> b >> c >> d;
-        cout << b << " " << c << " " << c << endl;
+    int tests;
+    cin >> tests;
+    for (int test = 1; test <= tests; test++) {
+        ll n; cin >> n;
+        vll a(n); cin >> a;
+        ll ans = 0;
+        for (int i = 1; i < n - 1; i++) {
+            if (a[i] > a[i - 1] && a[i] > a[i + 1]) ans++;
+        }
+        cout << "Case #" << test << ": " << ans << endl;
     }
 }

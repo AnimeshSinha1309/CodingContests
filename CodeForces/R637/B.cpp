@@ -30,29 +30,35 @@ ostream &operator<<(ostream &out, vector<Type> &vec) {
     return out;
 }
 
-ll test(mll mat) {
-    mll dp(4, vll(4, 0));
-    dp[0][1] = mat[0][0];
-    for (int i = 1; i <= 3; i++)
-        for (int j = 1; j <= 3; j++)
-            dp[i][j] = max(dp[i - 1][j] & mat[i - 1][j - 1],
-                           dp[i][j - 1] & mat[i - 1][j - 1]);
-    return dp[3][3];
-}
-
 int main() {
     ios_base::sync_with_stdio(false);
     cin.tie(nullptr);
     cout.tie(nullptr);
-    ll k;
-    cin >> k;
-    mll a = {{0b111111111111111111, k, 0},
-             {0b100000000000000000, 0b111111111111111111, 0b011111111111111111},
-             {0, 0b011111111111111111, 0b111111111111111111}};
-    cout << 3 << " " << 3 << endl;
-    for (int i = 0; i < 3; i++) {
-        for (int j = 0; j < 3; j++)
-            cout << a[i][j] << " ";
-        cout << endl;
+    int t;
+    cin >> t;
+    while (t--) {
+        ll n, k;
+        cin >> n >> k;
+        vll a(n);
+        cin >> a;
+        vbl p(n);
+        for (int i = 1; i < n - 1; i++)
+            if (a[i - 1] < a[i] && a[i] > a[i + 1])
+                p[i] = true;
+        vll ans(n - k + 1, 0);
+        int i = 0, j = 0;
+        while (j < k)
+            ans[0] += p[j], j++;
+        while (j < n) {
+            ans[i + 1] = ans[i] + p[j] - p[i];
+            i++, j++;
+        }
+        for (int i = 0; i <= n - k; i++)
+            ans[i] -= p[i] + p[i + k - 1];
+        int l = 0;
+        for (int i = 0; i <= n - k; i++)
+            if (ans[l] < ans[i])
+                l = i;
+        cout << ans[l] + 1 << " " << l + 1 << endl;
     }
 }
