@@ -15,22 +15,24 @@ long long solve(vector<int> h) {
     }
     for (int i = 0; i < n; i++) {
         ans += s.size();
+        cout << "@@@" << ans << endl;
         while (!s.empty() && h[s.front() % n] < h[i])
             s.pop_front();
         s.push_front(n + i);
-        while (s.back() <= i)
+        while (s.back() <= i + 1)
             s.pop_back();
     }
+    cout << ">>>" << ans << endl;
     return ans;
 }
 
 int main() {
     int n;
     cin >> n;
-    vector<int> h;
+    vector<int> h(n);
     for (int i = 0; i < n; i++)
         cin >> h[i];
     vector<int> g(h);
     reverse(g.begin(), g.end());
-    cout << (solve(h) + solve(g)) << endl;
+    cout << (solve(h) + solve(g)) / 4 + 1 << endl;
 }
