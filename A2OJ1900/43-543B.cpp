@@ -43,7 +43,7 @@ class Graph {
     struct Node {
         int index;
         vector<pair<long long, long long>> adjacent;
-        NodeColor color = UNVISITED;
+        NodeColor _color = UNVISITED;
     };
     vector<Node> list;
     Graph(int n) {

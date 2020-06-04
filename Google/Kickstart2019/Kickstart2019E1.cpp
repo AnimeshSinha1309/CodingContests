@@ -19,7 +19,7 @@ typedef vector<vector<bool>> mbl;
 #define maximize(a, b) (a = max(a, b))
 const long long MOD = 1e9 + 7;
 
-template<typename Type>
+template <typename Type>
 istream &operator>>(istream &in, vector<Type> &vec) {
     ll n = vec.size();
     for (int i = 0; i < n; i++)
@@ -27,7 +27,7 @@ istream &operator>>(istream &in, vector<Type> &vec) {
     return in;
 }
 
-template<typename Type>
+template <typename Type>
 ostream &operator<<(ostream &out, vector<Type> &vec) {
     for (auto val : vec)
         out << val << " ";
@@ -36,14 +36,12 @@ ostream &operator<<(ostream &out, vector<Type> &vec) {
 }
 
 class Graph {
-public:
-    enum NodeColor {
-        VISITED, VISITING, UNVISITED
-    };
+   public:
+    enum NodeColor { VISITED, VISITING, UNVISITED };
     struct Node {
         int index;
         vpl adjacent;
-        NodeColor color = UNVISITED;
+        NodeColor _color = UNVISITED;
     };
     vector<Node> list;
     int n;
