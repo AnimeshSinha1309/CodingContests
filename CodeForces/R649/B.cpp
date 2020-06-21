@@ -31,22 +31,25 @@ ostream &operator<<(ostream &out, vector<Type> &vec) {
 }
 
 int main() {
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-    ll n, m, y;
-    cin >> n >> m >> y;
-    vll x(n);
-    cin >> x;
-    vll k(n);
-    priority_queue<pll> q;
-    for (int i = 0; i < n; i++) {
-        k[i] = x[i] * m / y;
-        q.emplace(x[i] * m % y, i);
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+    ll t;
+    cin >> t;
+    while (t--) {
+        ll n;
+        cin >> n;
+        vll a(n);
+        cin >> a;
+        vll b;
+        b.push_back(a[0]);
+        for (int i = 1; i < n - 1; i++) {
+            if ((a[i] > a[i - 1] && a[i] > a[i + 1]) ||
+                (a[i] < a[i - 1] && a[i] < a[i + 1])) {
+                b.push_back(a[i]);
+            }
+        }
+        b.push_back(a[n - 1]);
+        cout << b.size() << endl << b;
     }
-    ll wallet = m - accumulate(k.begin(), k.end(), 0ll);
-    for (int i = 0; i < wallet; i++) {
-        k[q.top().second]++;
-        q.pop();
-    }
-    cout << k;
 }

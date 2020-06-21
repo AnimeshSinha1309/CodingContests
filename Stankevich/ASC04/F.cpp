@@ -31,22 +31,32 @@ ostream &operator<<(ostream &out, vector<Type> &vec) {
 }
 
 int main() {
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-    ll n, m, y;
-    cin >> n >> m >> y;
-    vll x(n);
-    cin >> x;
-    vll k(n);
-    priority_queue<pll> q;
+    freopen("positive.in", "r", stdin);
+    freopen("positive.out", "w", stdout);
+    ll n;
+    cin >> n;
+    vll a(n);
+    cin >> a;
+    vll prefix(n);
+    prefix[0] = a[0];
+    for (int i = 1; i < n; i++) {
+        prefix[i] = a[i] + prefix[i - 1];
+    }
+    ll sum = prefix[n - 1];
+
+    vll min_post(n, 1e16), max_pre(n, -1e16);
+    for (int i = 0; i < n - 1; i++) {
+        max_pre[i + 1] = max(max_pre[i], prefix[i]);
+    }
+    for (int i = n - 1; i > 0; i--) {
+        min_post[i - 1] = min(min_post[i], prefix[i]);
+    }
+    // cout << prefix << min_post << max_pre;
+    ll ans = 0;
     for (int i = 0; i < n; i++) {
-        k[i] = x[i] * m / y;
-        q.emplace(x[i] * m % y, i);
+        if ((min_post[i] - (i > 0 ? prefix[i - 1] : 0)) > 0 &&
+            (max_pre[i] - prefix[i] < sum) && a[i] > 0)
+            ans++;
     }
-    ll wallet = m - accumulate(k.begin(), k.end(), 0ll);
-    for (int i = 0; i < wallet; i++) {
-        k[q.top().second]++;
-        q.pop();
-    }
-    cout << k;
+    cout << ans << endl;
 }

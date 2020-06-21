@@ -31,22 +31,41 @@ ostream &operator<<(ostream &out, vector<Type> &vec) {
 }
 
 int main() {
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-    ll n, m, y;
-    cin >> n >> m >> y;
-    vll x(n);
-    cin >> x;
-    vll k(n);
-    priority_queue<pll> q;
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+    // Input
+    ll n;
+    cin >> n;
+    string s, t;
+    cin >> s >> t;
+    // Check if fails
+    ll count = 0;
     for (int i = 0; i < n; i++) {
-        k[i] = x[i] * m / y;
-        q.emplace(x[i] * m % y, i);
+        if (s[i] == '0')
+            count++;
+        if (t[i] == '0')
+            count--;
     }
-    ll wallet = m - accumulate(k.begin(), k.end(), 0ll);
-    for (int i = 0; i < wallet; i++) {
-        k[q.top().second]++;
-        q.pop();
+    if (count != 0) {
+        cout << -1 << endl;
+        exit(0);
     }
-    cout << k;
+    // In the string
+    ll running = 0, top = 0;
+    ll seq_0 = 0, seq_1 = 0;
+    for (int i = 0; i < n; i++) {
+        if (s[i] != t[i]) {
+            if (s[i] == '0') {
+                seq_0++;
+                seq_1 = max(seq_1 - 1, 0ll);
+            } else {
+                seq_1++;
+                seq_0 = max(seq_0 - 1, 0ll);
+            }
+            top = max(top, seq_0 + seq_1);
+        }
+    }
+    // Output
+    cout << top << endl;
 }

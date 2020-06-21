@@ -31,22 +31,33 @@ ostream &operator<<(ostream &out, vector<Type> &vec) {
 }
 
 int main() {
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-    ll n, m, y;
-    cin >> n >> m >> y;
-    vll x(n);
-    cin >> x;
-    vll k(n);
-    priority_queue<pll> q;
-    for (int i = 0; i < n; i++) {
-        k[i] = x[i] * m / y;
-        q.emplace(x[i] * m % y, i);
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+    ll t;
+    cin >> t;
+    while (t--) {
+        ll n;
+        cin >> n;
+        if (n == 1) {
+            cout << "FastestFinger" << endl;
+        } else if (n == 2) {
+            cout << "Ashishgup" << endl;
+        } else if (n % 2 == 1) {
+            cout << "Ashishgup" << endl;
+        } else {
+            ll n_ = n;
+            while (n_ % 2 == 0)
+                n_ /= 2;
+            ll odd_factors = n_ > 1 ? 1 : 0;
+            for (int i = 2; i <= sqrt(n_); i++) {
+                if (n_ % i == 0)
+                    odd_factors += 2;
+            }
+            if ((odd_factors >= 2) || (odd_factors == 1 && n % 4 == 0))
+                cout << "Ashishgup" << endl;
+            else
+                cout << "FastestFinger" << endl;
+        }
     }
-    ll wallet = m - accumulate(k.begin(), k.end(), 0ll);
-    for (int i = 0; i < wallet; i++) {
-        k[q.top().second]++;
-        q.pop();
-    }
-    cout << k;
 }

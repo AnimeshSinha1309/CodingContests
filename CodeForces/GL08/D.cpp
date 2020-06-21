@@ -31,22 +31,35 @@ ostream &operator<<(ostream &out, vector<Type> &vec) {
 }
 
 int main() {
-    freopen("input.txt", "r", stdin);
-    freopen("output.txt", "w", stdout);
-    ll n, m, y;
-    cin >> n >> m >> y;
-    vll x(n);
-    cin >> x;
-    vll k(n);
-    priority_queue<pll> q;
+    ios_base::sync_with_stdio(false);
+    cin.tie(nullptr);
+    cout.tie(nullptr);
+    // Take the inputs
+    ll n;
+    cin >> n;
+    vll a(n);
+    cin >> a;
+    sort(a.rbegin(), a.rend());
+    // Do the 20 bit algo
+    for (int b = 0; b < 20; b++) {
+        ll count = 0;
+        for (int i = 0; i < n; i++) {
+            if (a[i] & (1 << b)) {
+                count++;
+            }
+        }
+        for (int i = 0; i < n; i++) {
+            if (i < count) {
+                a[i] |= (1 << b);
+            } else {
+                a[i] &= ~(1 << b);
+            }
+        }
+    }
+    // Get the sum of squares
+    ll ans = 0;
     for (int i = 0; i < n; i++) {
-        k[i] = x[i] * m / y;
-        q.emplace(x[i] * m % y, i);
+        ans += a[i] * a[i];
     }
-    ll wallet = m - accumulate(k.begin(), k.end(), 0ll);
-    for (int i = 0; i < wallet; i++) {
-        k[q.top().second]++;
-        q.pop();
-    }
-    cout << k;
+    cout << ans << endl;
 }
