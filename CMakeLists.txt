@@ -4,4 +4,4 @@ set(CMAKE_CXX_STANDARD 17)            # Enable c++14 standard
 
 add_compile_options(-Wall -pedantic)
 
-add_executable(Coding CodeForces/R637/E.cpp)
+add_executable(Coding CodeForces/R655/E.cpp)
